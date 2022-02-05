@@ -47,7 +47,7 @@ import java.util.*;
 
 public class Main {
     
-    public static long min(long...arr){
+    public static long min(long...arr){  // Triple dot used for help of using min as function 
         long minn = (long)1e15;
         for(long x: arr)
         minn = Math.min(x, minn);
