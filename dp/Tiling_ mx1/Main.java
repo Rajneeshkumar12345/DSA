@@ -8,13 +8,13 @@ public class Main {
         int [] dp = new int[n+1];
         for(int i = 1; i<=n; i++){
             if(i < m){
-                dp[i] = 1;
+                dp[i] = 1; // only one way is possible which is vertical
             }
             else if(i == m){
-                dp[i] = 2;
+                dp[i] = 2; // in this condition two way of possibe which is vertical and horizontal 
             }
             else{
-                dp[i] = dp[i-1] + dp[i-m];
+                dp[i] = dp[i-1] + dp[i-m];  //  
             }
         }
         return dp[n];
@@ -27,3 +27,11 @@ public class Main {
         System.out.println(ans);
     }
 }
+
+
+
+
+
+
+
+

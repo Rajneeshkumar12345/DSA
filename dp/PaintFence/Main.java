@@ -37,6 +37,7 @@ public class Main {
     public static int ways(int n, int k){
 
         int [][] dp = new int[2][n+1];
+        // where two parametr are going to change then we will make 2D dp
         for(int i = 2; i<=n; i++){
             if(i == 2){
                 dp[0][i] = k;
