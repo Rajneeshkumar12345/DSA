@@ -1,25 +1,22 @@
 
-
 import java.io.*;
 import java.util.*;
 
 public class Main {
 
-  public static void selectionSort(int[] arr) {
-      // Isme n-1 ele pe travel krke compare and then i se swap kr denge
-      // if we get minI then that it hold and travel whole idx after that swap with i   
-   int n = arr.length;
+  public static void insertionSort(int[] arr) {
+    int n = arr.length;
 
-   for( int i = 0; i < n - 1; i++){
+    for( int i = 1; i < n; i++){
+      for( int j = i-1; j >= 0 ; j--){
+        if( isGreater(arr, j, j+1) == true){
+          swap(arr, j, j+1);
+        } else{
+          break;
+        }
+      }
+    }
 
-     int minI = i;
-     for( int j = i+1 ; j<n; j++){  // i  se j  +1 start hokar check krega
-       if( isSmaller(arr, j, minI)){
-         minI = j;
-       }
-     }
-     swap(arr, i, minI); // min ko i se swap se kr denge
-   }
     
   }
 
@@ -31,8 +28,8 @@ public class Main {
     arr[j] = temp;
   }
 
-  // return true if ith element is smaller than jth element
-  public static boolean isSmaller(int[] arr, int i, int j) {
+  // return true if jth element is greater than ith element
+  public static boolean isGreater(int[] arr, int j, int i) {
     System.out.println("Comparing " + arr[i] + " and " + arr[j]);
     if (arr[i] < arr[j]) {
       return true;
@@ -54,8 +51,9 @@ public class Main {
     for (int i = 0; i < n; i++) {
       arr[i] = scn.nextInt();
     }
-    selectionSort(arr);
+    insertionSort(arr);
     print(arr);
   }
 
 }
+

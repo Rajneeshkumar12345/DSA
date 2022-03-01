@@ -29,8 +29,8 @@ public class Main {
   // return true if ith element is smaller than jth element
   public static boolean isSmaller(int[] arr, int i, int j) {
     System.out.println("Comparing " + arr[i] + " and " + arr[j]);
-    if (arr[i] < arr[j]) {
-      return true;
+    if (arr[i] < arr[j]) { // Be focus I and J has change like it will be J and I
+      return true;   // SO J start 0 and I start fromn 1
     } else {
       return false;
     }
