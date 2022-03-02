@@ -19,7 +19,7 @@ public class Main {
       } else if( val == 1){
         j++;
       } else {
-        swap( arr, j, k);
+        swap( arr, j, k);   /// For val >= 2
         k--;
       }
     }
