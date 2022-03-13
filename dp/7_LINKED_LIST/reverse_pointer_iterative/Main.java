@@ -1,5 +1,4 @@
 
-
 import java.io.*;
 import java.util.*;
 
@@ -156,26 +155,45 @@ public class Main {
         size--;
       }
     }
-    private Node getNodeAt( int idx){
-        Node temp = head;
-        for( int i = 0; i < idx ; i++){
-            temp = temp.next;
-        }
-        return temp;
+
+    private Node getNodeAt(int idx) {
+      Node temp = head;
+      for (int i = 0; i < idx; i++) {
+        temp = temp.next;
+      }
+      return temp;
     }
+
     public void reverseDI() {
-      // In data iteratve there is no change of next ka address
       int li = 0;
       int ri = size - 1;
-      while( li < ri){
-          Node left = getNodeAt(li);
-          Node right = getNodeAt(ri);
-          int temp = left.data;
-          left.data = right.data;
-          right.data = temp;
-          li++;
-          ri--;
+      while(li < ri){
+        Node left = getNodeAt(li);
+        Node right = getNodeAt(ri);
+
+        int temp = left.data;
+        left.data = right.data;
+        right.data = temp;
+
+        li++;
+        ri--;
       }
+    }
+ 
+    public void reversePI(){
+        // In pointer iteratve there is change of next ka address
+       Node prev = null;
+       Node curr = head;
+       
+       while( curr != null){
+           Node next = curr.next;
+           curr.next = prev;
+           prev = curr;
+           curr = next;
+       }
+       Node temp = head;
+       head = tail;
+       tail = temp;
     }
   }
 
@@ -224,6 +242,8 @@ public class Main {
         list.removeAt(idx);
       } else if(str.startsWith("reverseDI")){
         list.reverseDI();
+      } else if(str.startsWith("reversePI")){
+        list.reversePI();
       }
       str = br.readLine();
     }
