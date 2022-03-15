@@ -8,7 +8,7 @@ public class Main{
 public static int precedence(char opr){
     if(opr == '+' || opr == '-')
         return 1;
-    return 2;       // * OR /   
+    return 2;       // For  * OR /   
 }
 
 public static boolean isOptr(char ch){
@@ -51,11 +51,11 @@ public static void main(String[] args) throws Exception {
             operator.push(ch);
         }
         else if(ch >= '0' && ch <= '9'){
-            operand.push(ch-'0');
+            operand.push(ch-'0');      // Character ko int me convert
         }
-        else if(ch == ')'){
+        else if(ch == ')'){   // Closing bracket aate hi calVal
             
-            while(operator.peek() != '('){
+            while(operator.peek() != '('){  // opening bracket aate hi stop calVal
                 char optr = operator.pop();     //+-x/
                 int v2 = operand.pop();
                 int v1 = operand.pop();
