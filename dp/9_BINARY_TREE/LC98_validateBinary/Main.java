@@ -1,3 +1,4 @@
+import javax.swing.tree.TreeNode;
 
 /**
  * Definition for a binary tree node.
@@ -16,7 +17,7 @@
  */
 class Solution {
     long prev = Long.MIN_VALUE;
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST( TreeNode root) {
         if(root == null){
             return true;
         }
