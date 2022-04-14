@@ -50,16 +50,32 @@ public class Main {
   static int floor;
   public static void ceilAndFloor(Node node, int data) {
     if(node.data > data){
-        if(node.data < ceil){
-            ceil = node.data;  // Ceil Means smallest among largest
-        }
+      if(node.data < ceil){
+        ceil = node.data;
+      }
     }
+
     if(node.data < data){
-        floor = Math.max(node.data, floor); // Floor means Largest among smaller
+      if(node.data > floor){
+        floor = node.data;
+      }
     }
-    for(Node child : node.children){
-        ceilAndFloor(child, data);
+
+    for (Node child : node.children) {
+      ceilAndFloor(child, data);
     }
+  }
+
+  public static int kthLargest(Node node, int k){
+    int data  = Integer.MAX_VALUE;
+     floor = Integer.MIN_VALUE;
+    
+    for(int i = 0 ; i < k ; i++){
+        ceilAndFloor(node, data);
+        data = floor ;
+        floor = Integer.MIN_VALUE;
+    }
+        return data;
   }
 
   public static void main(String[] args) throws Exception {
@@ -71,14 +87,11 @@ public class Main {
       arr[i] = Integer.parseInt(values[i]);
     }
 
-    int data = Integer.parseInt(br.readLine());
+    int k = Integer.parseInt(br.readLine());
 
     Node root = construct(arr);
-    ceil = Integer.MAX_VALUE;
-    floor = Integer.MIN_VALUE;
-    ceilAndFloor(root, data);
-    System.out.println("CEIL = " + ceil);
-    System.out.println("FLOOR = " + floor);
+    int kthLargest = kthLargest(root, k);
+    System.out.println(kthLargest);
   }
 
 }

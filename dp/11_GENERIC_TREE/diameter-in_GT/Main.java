@@ -1,4 +1,5 @@
 
+
 import java.io.*;
 import java.util.*;
 
@@ -20,7 +21,6 @@ public class Main {
       display(child);
     }
   }
-
   public static Node construct(int[] arr) {
     Node root = null;
 
@@ -44,23 +44,26 @@ public class Main {
 
     return root;
   }
-
-  
-  static int ceil;
-  static int floor;
-  public static void ceilAndFloor(Node node, int data) {
-    if(node.data > data){
-        if(node.data < ceil){
-            ceil = node.data;  // Ceil Means smallest among largest
+    static int dia = 0;
+    public static int calculateDiaReturnHeight(Node node){
+        int dch = -1;
+        int sdch = -1;
+        for(Node child : node.children){
+        int ch = calculateDiaReturnHeight(child);
+            if(ch > dch){
+                sdch = dch;   // deepest child
+                dch = ch;
+            } else if (ch > sdch){
+                sdch = ch;   // Second deepest child
+            }
         }
+        if(dia < dch + sdch + 2){
+            dia = dch + sdch + 2;
+        }
+        dch += 1;
+        return dch;
     }
-    if(node.data < data){
-        floor = Math.max(node.data, floor); // Floor means Largest among smaller
-    }
-    for(Node child : node.children){
-        ceilAndFloor(child, data);
-    }
-  }
+  
 
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -71,14 +74,10 @@ public class Main {
       arr[i] = Integer.parseInt(values[i]);
     }
 
-    int data = Integer.parseInt(br.readLine());
-
     Node root = construct(arr);
-    ceil = Integer.MAX_VALUE;
-    floor = Integer.MIN_VALUE;
-    ceilAndFloor(root, data);
-    System.out.println("CEIL = " + ceil);
-    System.out.println("FLOOR = " + floor);
+    calculateDiaReturnHeight(root);
+    System.out.println(dia);
+    // write your code here
   }
 
 }

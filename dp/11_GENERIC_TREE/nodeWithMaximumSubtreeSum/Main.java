@@ -44,22 +44,20 @@ public class Main {
 
     return root;
   }
-
-  
-  static int ceil;
-  static int floor;
-  public static void ceilAndFloor(Node node, int data) {
-    if(node.data > data){
-        if(node.data < ceil){
-            ceil = node.data;  // Ceil Means smallest among largest
-        }
-    }
-    if(node.data < data){
-        floor = Math.max(node.data, floor); // Floor means Largest among smaller
-    }
-    for(Node child : node.children){
-        ceilAndFloor(child, data);
-    }
+  static int mSum = Integer.MIN_VALUE;
+  static int mSumNode = Integer.MIN_VALUE;
+  private static int nodeWithMaximumSubtreeSum(Node node){
+      int sum = 0;
+      for(Node child : node.children){
+          int recSum = nodeWithMaximumSubtreeSum(child);
+          sum += recSum;
+      }
+      sum += node.data;
+      if(sum > mSum){
+          mSum = sum;
+          mSumNode = node.data;
+      }
+      return sum;
   }
 
   public static void main(String[] args) throws Exception {
@@ -71,14 +69,11 @@ public class Main {
       arr[i] = Integer.parseInt(values[i]);
     }
 
-    int data = Integer.parseInt(br.readLine());
-
     Node root = construct(arr);
-    ceil = Integer.MAX_VALUE;
-    floor = Integer.MIN_VALUE;
-    ceilAndFloor(root, data);
-    System.out.println("CEIL = " + ceil);
-    System.out.println("FLOOR = " + floor);
+     mSum = Integer.MIN_VALUE;
+    mSumNode = 0;
+    nodeWithMaximumSubtreeSum(root);
+    System.out.println(mSumNode + "@" + mSum);
   }
 
 }
