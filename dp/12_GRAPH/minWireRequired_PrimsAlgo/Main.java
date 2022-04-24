@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -5,11 +6,13 @@ public class Main {
     static class pp{
         //prims pair
         int s;      //source
+        int p;          //parent
         int cost;       //cost
         
         pp(){}
-        pp(int s, int cost){
+        pp(int s, int p, int cost){
             this.s = s;
+            this.p = p;
             this.cost = cost;
         }
         
@@ -26,45 +29,43 @@ public class Main {
       }
    }
 
-    public static int primsAlgo(ArrayList<Edge>[] graph){
-        int src = 0;//source
-
+    public static void primsAlgo(ArrayList<Edge>[] graph){
         int n = graph.length;
         PriorityQueue<pp> pq = new PriorityQueue<>((a,b)->{
-            return a.cost-b.cost;
+            return a.cost-b.cost;           // it gives min cost 
         });
         
         boolean [] vis = new boolean[n];
-        int minCost = 0;
-
-
+        
         //seeding
-        pq.add(new pp(src, 0));  
+        pq.add(new pp(0, -1, 0));         // -1 add kiya ki isko add nhi krna ans me 
         
         
         while(pq.size() != 0){
             //remove
             pp rem = pq.remove();
-        
-            
+
             //work
-
-            if(vis[rem.s] == false)
-                minCost += rem.cost;
-
+            if(vis[rem.s] == false && rem.p != -1){
+                System.out.println("["+rem.s + "-" + rem.p + "@" + rem.cost+"]" );
+            }
+            
+            
             //mark
             vis[rem.s] = true;
-            
+
             //add
             for(Edge e : graph[rem.s]){
                 int nbr = e.nbr;
-                int cost = e.wt;
-                if(vis[nbr] == false){
-                    pq.add(new pp(nbr, cost));
+
+                if(!vis[nbr]){
+                    pq.add(new pp(nbr, rem.s, e.wt));
                 }
             }
+            
+            
         }
-        return minCost;
+        
         
         
     }
@@ -88,8 +89,7 @@ public class Main {
       }
 
       //code starts here
-      int ans = primsAlgo(graph);
-      System.out.println(ans);
+      primsAlgo(graph);
    }
 
 }
