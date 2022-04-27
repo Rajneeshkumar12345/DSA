@@ -21,7 +21,7 @@ public class Main{
     public static void main(String [] args){
         //create
         PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->{
-            return b-a; 
+            return b-a;         // return max
         }); 
         // PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder()); 
 
@@ -57,7 +57,7 @@ public class Main{
         //                 {1,0}};
 
         // PriorityQueue<pair> pq = new PriorityQueue<>((a,b)->{
-        //     return  a.val2-b.val2;  // If pair not given then we will use only a-b or b-a
+        //     return  a.val2-b.val2;  // return min according val2  in Pair
         // }); 
 
         // pq.add(new pair(2,3));
