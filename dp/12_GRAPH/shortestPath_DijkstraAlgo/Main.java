@@ -1,7 +1,7 @@
 
 import java.io.*;
 import java.util.*;
-// in thie method all test case has not passed
+
 public class Main {
     static class dp{
         int v;
@@ -28,9 +28,8 @@ public class Main {
       }
    }
 
-    public static void shortestPath(ArrayList<Edge> [] graph){
+    public static void shortestPath(ArrayList<Edge> [] graph, int src){
         int n = graph.length;
-        int src = 0;
         PriorityQueue<dp> pq = new PriorityQueue<>((a, b)->{
             return a.wsf - b.wsf;
     });
@@ -78,7 +77,7 @@ public class Main {
       }
 
       int src = Integer.parseInt(br.readLine());
-      shortestPath(graph);
+      shortestPath(graph, src);
       
    }
 }
@@ -86,7 +85,7 @@ public class Main {
 
 // No use function method ***************************
 
-// in thie method all test case has  passed
+
 import java.io.*;
 
 import java.util.*;
