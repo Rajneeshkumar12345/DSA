@@ -18,7 +18,7 @@ public class Main {
          base.add("");
          return base;
         }
-        char ch = s.charAt(0); // ch me faith ko add kr dunga
+        char ch = s.charAt(0); // ch me faith ko add kr dunga that means ch = a
         String ros = s.substring(1); // Faith b->c
         
         ArrayList<String> recAns = gss(ros);
@@ -29,7 +29,7 @@ public class Main {
         }
         
         for(String ele : recAns){
-            myAns.add(ch + ele);    // Faith ko meet krakr apne ch me add kr liya  
+            myAns.add(ch + ele);    // Faith ko meet krakr apne ch me one by one add kr liya  
         }
         
         return myAns;
