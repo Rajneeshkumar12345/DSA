@@ -32,7 +32,7 @@ public static void main(String[] args) throws Exception {
     Stack<Integer> st = new Stack<>(); // I will store idx 
     
     for( int i = 0; i < n; i++){
-        while( st.size() != 0 && arr[st.peek()] < arr[i]){
+        while( st.size() != 0 && arr[st.peek()] < arr[i]){ // here compare idx value not idx
           // Stack me mujhse bada koi aayega, mujhe pop krayega, aur ans me mere idx par apne ko dalega
             int idx = st.pop();
             ans[idx] = arr[i];
