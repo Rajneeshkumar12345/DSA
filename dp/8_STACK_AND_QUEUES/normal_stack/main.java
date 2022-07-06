@@ -3,13 +3,13 @@ import java.util.*;
 
 public class Main {
 
-  public static class CustomStack {
+  public static class CustomStack {    // Class created
     int[] data;
     int tos;  // Top of stack
 
-    public CustomStack(int cap) {
-      data = new int[cap];
-      tos = -1;
+    public CustomStack(int cap) {     // constructor create 
+      data = new int[cap];            // set capacity of stack
+      tos = -1;                       // Default set -1 in top of stack
     }
 
     int size() {
